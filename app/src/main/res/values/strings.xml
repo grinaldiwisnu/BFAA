@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Github User</string>
+    <string name="repository">Repository</string>
+    <string name="followers">Followers</string>
+    <string name="following">Following</string>
+    <string name="header_background">Header background</string>
+    <string name="divider">-</string>
+    <string name="no_data_available">Data tidak ditemukan</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="empty_state">Masukkan username github terlebih dahulu …</string>
+    <string name="not_found">User tidak ditemukan</string>
+</resources>
