@@ -1,26 +1,29 @@
 package com.example.githubuserapp.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.ViewModel
-import com.example.githubuserapp.data.api.ApiRequest
-import com.example.githubuserapp.data.model.UserDetail
+import android.app.Application
+import androidx.lifecycle.*
+import com.example.githubuserapp.data.FavoriteRepository
+import com.example.githubuserapp.data.local.GithubDatabase
+import com.example.githubuserapp.data.local.GithubUserDao
+import com.example.githubuserapp.data.model.SearchResponse
 import com.example.githubuserapp.utils.Resource
 
-class DetailViewModel : ViewModel() {
+class DetailViewModel(app: Application) : AndroidViewModel(app) {
 
-    private val username: MutableLiveData<String> = MutableLiveData()
+    private var githubUser: GithubUserDao = GithubDatabase.getDatabase(app).userDao()
+    private var favoriteRepository: FavoriteRepository =
+        FavoriteRepository(githubUserDao = githubUser)
 
-    val dataDetail: LiveData<Resource<UserDetail>> = Transformations
-        .switchMap(username) {
-            ApiRequest.getDetailUser(it)
-        }
+    val isFavorite: LiveData<Boolean> = favoriteRepository.isFavorite
 
-    fun setDetail(userid: String) {
-        if (username.value == userid) {
-            return
-        }
-        username.value = userid
+    fun data(username: String): LiveData<Resource<SearchResponse>> =
+        favoriteRepository.getDetailUser(username)
+
+    fun addFavorite(githubUser: SearchResponse) = viewModelScope.launch {
+        favoriteRepository.insert(githubUser)
+    }
+
+    fun removeFavorite(githubUser: SearchResponse) = viewModelScope.launch {
+        favoriteRepository.delete(githubUser)
     }
 }

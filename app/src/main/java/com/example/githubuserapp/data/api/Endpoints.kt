@@ -1,7 +1,6 @@
 package com.example.githubuserapp.data.api
 
 import com.example.githubuserapp.data.model.SearchResponse
-import com.example.githubuserapp.data.model.UserDetail
 import com.example.githubuserapp.data.model.UserSearch
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -16,7 +15,7 @@ interface Endpoints {
     @GET("users/{username}")
     suspend fun getSearchByUserName(
         @Path("username") username: String
-    ): UserDetail
+    ): SearchResponse
 
     @GET("users/{username}/followers")
     suspend fun getFollowers(

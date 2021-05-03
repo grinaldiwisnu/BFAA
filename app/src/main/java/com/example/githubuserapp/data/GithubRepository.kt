@@ -1,10 +1,12 @@
-package com.example.githubuserapp.data.api
+package com.example.githubuserapp.data
 
 import androidx.lifecycle.liveData
+import com.example.githubuserapp.data.api.Retrofit
+import com.example.githubuserapp.data.local.GithubUserDao
 import com.example.githubuserapp.utils.Resource
 import kotlinx.coroutines.Dispatchers
 
-object ApiRequest {
+object GithubRepository {
     fun searchUsers(query: String) = liveData(Dispatchers.IO) {
         emit(Resource.loading(null))
         try {
@@ -41,4 +43,6 @@ object ApiRequest {
             emit(Resource.error(null, exception.message ?: "Error"))
         }
     }
+
+    fun getFavorite(githubUserDao: GithubUserDao) = githubUserDao.getUsers()
 }

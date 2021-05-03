@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import com.example.githubuserapp.data.api.ApiRequest
+import com.example.githubuserapp.data.GithubRepository
 import com.example.githubuserapp.data.model.SearchResponse
 import com.example.githubuserapp.utils.Resource
 
@@ -22,10 +22,10 @@ class FollowViewModel : ViewModel() {
         .switchMap(username) {
             when (type) {
                 TypeView.FOLLOWER -> {
-                    ApiRequest.getFollowers(it)
+                    GithubRepository.getFollowers(it)
                 }
                 TypeView.FOLLOWING -> {
-                    ApiRequest.getFollowing(it)
+                    GithubRepository.getFollowing(it)
                 }
             }
         }

@@ -11,4 +11,7 @@
 
     <string name="empty_state">Masukkan username github terlebih dahulu …</string>
     <string name="not_found">User tidak ditemukan</string>
+
+    <string name="reminder_name">Kami merindukanmu, buka kembali Github User</string>
+    <string name="reminder_message">Cari user yang ingin kamu simpan sekarang!</string>
 </resources>
