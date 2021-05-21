@@ -12,7 +12,7 @@ import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import com.example.githubuserapp.R
-import com.example.githubuserapp.view.MainActivity
+import com.example.githubuserapp.views.MainActivity
 
 class Reminder : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {

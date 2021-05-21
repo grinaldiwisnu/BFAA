@@ -6,8 +6,8 @@ import android.content.Context
 import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
-import com.example.githubuserapp.data.local.GithubDatabase
-import com.example.githubuserapp.data.local.GithubUserDao
+import com.example.githubuserapp.networks.local.GithubDatabase
+import com.example.githubuserapp.networks.local.GithubUserDao
 
 class ProviderContent : ContentProvider() {
     private lateinit var githubUserDao: GithubUserDao

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="Settings">
+
+        <Preference
+            android:icon="@drawable/ic_baseline_language_24"
+            app:summary="Rubah bahasa aplikasi"
+            app:title="Bahasa">
+            <intent
+                android:action="android.settings.LOCALE_SETTINGS"/>
+        </Preference>
+
+        <SwitchPreferenceCompat
+            android:icon="@drawable/ic_baseline_notifications_active_24"
+            app:key="Notifikasi Harian"
+            app:summaryOff="Notifikasi Dimatikan"
+            app:summaryOn="Notifikasi Dinyalakan"
+            app:title="Notifikasi"/>
+    </PreferenceCategory>
+</PreferenceScreen>

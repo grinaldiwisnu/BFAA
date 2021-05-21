@@ -14,4 +14,9 @@
 
     <string name="reminder_name">Kami merindukanmu, buka kembali Github User</string>
     <string name="reminder_message">Cari user yang ingin kamu simpan sekarang!</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="favorite">Favorite</string>
+    <string name="settings">Setting</string>
+    <string name="home">Home</string>
 </resources>

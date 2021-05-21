@@ -3,6 +3,14 @@
     package="com.example.githubuserapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <permission android:name="com.example.githubuserapp.READ_DATABASE" android:protectionLevel="normal" />
+    <permission android:name="com.example.githubuserapp.WRITE_DATABASE" android:protectionLevel="normal" />
+    <queries>
+        <package android:name="com.example.githubuserapp" />
+    </queries>
 
     <application
         android:allowBackup="true"
@@ -12,8 +20,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GithubUserApp">
+        <receiver
+            android:name=".widget.FavWidget"
+            android:enabled="true"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/fav_widget_info" />
+        </receiver>
+
         <activity
-            android:name=".view.SplashScreen"
+            android:name=".views.SplashScreen"
             android:theme="@style/Theme.MaterialComponents.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,7 +42,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.MainActivity" />
+        <activity android:name=".views.MainActivity" />
+
+        <provider
+            android:name=".provider.ProviderContent"
+            android:authorities="com.example.githubuserapp"
+            android:exported="true"
+            android:readPermission="com.example.githubuserapp.READ_DATABASE"
+            android:writePermission="com.example.githubuserapp.WRITE_DATABASE" />
+
+        <service android:name=".widget.WidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS"/>
     </application>
 
 </manifest>

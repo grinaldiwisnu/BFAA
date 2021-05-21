@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import com.example.githubuserapp.data.GithubRepository
-import com.example.githubuserapp.data.model.SearchResponse
+import com.example.githubuserapp.models.SearchResponse
+import com.example.githubuserapp.networks.GithubRepository
 import com.example.githubuserapp.utils.Resource
 
 class HomeViewModel : ViewModel() {

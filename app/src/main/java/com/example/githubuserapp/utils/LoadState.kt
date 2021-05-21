@@ -1,60 +1,19 @@
 package com.example.githubuserapp.utils
 
-import android.view.View
+import com.example.githubuserapp.databinding.FragmentFavoriteBinding
 import com.example.githubuserapp.databinding.FragmentFollowBinding
 import com.example.githubuserapp.databinding.FragmentHomeBinding
 
-class ShowState(private val stateId: Int) {
+interface ShowState {
+    fun homeLoading(homeBinding: FragmentHomeBinding): Int? = null
+    fun homeSuccess(homeBinding: FragmentHomeBinding): Int? = null
+    fun homeError(homeBinding: FragmentHomeBinding, message: String?): Int? = null
 
-    fun loading(homeBinding: FragmentHomeBinding?, followBinding: FragmentFollowBinding?) {
-        when (stateId) {
-            1 -> {
-                homeBinding?.emptyText?.visibility = View.GONE
-                homeBinding?.progressBar?.visibility = View.VISIBLE
-                homeBinding?.recyclerview?.visibility = View.GONE
-            }
-            2 -> {
-                followBinding?.emptyText?.visibility = View.GONE
-                followBinding?.progress?.visibility = View.VISIBLE
-                followBinding?.followRecyclerView?.visibility = View.GONE
-            }
-        }
-    }
+    fun followLoading(followBinding: FragmentFollowBinding): Int? = null
+    fun followSuccess(followBinding: FragmentFollowBinding): Int? = null
+    fun followError(followBinding: FragmentFollowBinding, message: String?): Int? = null
 
-    fun success(homeBinding: FragmentHomeBinding?, followBinding: FragmentFollowBinding?) {
-        when (stateId) {
-            1 -> {
-                homeBinding?.emptyText?.visibility = View.GONE
-                homeBinding?.progressBar?.visibility = View.GONE
-                homeBinding?.recyclerview?.visibility = View.VISIBLE
-            }
-
-            2 -> {
-                followBinding?.emptyText?.visibility = View.GONE
-                followBinding?.progress?.visibility = View.GONE
-                followBinding?.followRecyclerView?.visibility = View.VISIBLE
-            }
-        }
-    }
-
-    fun error(
-        homeBinding: FragmentHomeBinding?,
-        followBinding: FragmentFollowBinding?,
-        message: String?
-    ) {
-        when (stateId) {
-            1 -> {
-                homeBinding?.emptyText?.visibility = View.VISIBLE
-                homeBinding?.emptyText?.text = message ?: "User tidak ditemukan"
-                homeBinding?.progressBar?.visibility = View.GONE
-                homeBinding?.recyclerview?.visibility = View.GONE
-            }
-            2 -> {
-                followBinding?.emptyText?.visibility = View.VISIBLE
-                followBinding?.emptyText?.text = message ?: "User tidak ditemukan"
-                followBinding?.progress?.visibility = View.GONE
-                followBinding?.followRecyclerView?.visibility = View.GONE
-            }
-        }
-    }
+    fun favoriteLoading(favoriteBinding: FragmentFavoriteBinding): Int? = null
+    fun favoriteSuccess(favoriteBinding: FragmentFavoriteBinding): Int? = null
+    fun favoriteError(favoriteBinding: FragmentFavoriteBinding, message: String?): Int? = null
 }

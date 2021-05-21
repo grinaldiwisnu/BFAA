@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">ConsumerApp</string>
+
+    <string name="not_found">User tidak ditemukan</string>
+    <string name="followers">Followers</string>
+    <string name="following">Following</string>
+    <string name="language_settings">Pengaturan Bahasa</string>
+    <string name="divider">-</string>
+    <string name="repository">Repository</string>
+    <string name="favorite">Favorite</string>
+
+</resources>

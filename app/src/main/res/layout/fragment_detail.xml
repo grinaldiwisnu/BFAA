@@ -9,13 +9,14 @@
 
         <variable
             name="data"
-            type="com.example.githubuserapp.data.model.SearchResponse" />
+            type="com.example.githubuserapp.models.SearchResponse" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.fragments.DetailFragment">
+        tools:context=".views.fragments.DetailFragment">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -38,7 +39,8 @@
                     android:layout_height="150dp"
                     android:layout_gravity="bottom"
                     app:avatar='@{data.avatarUrl ?? "" }'
-                    tools:src="@android:color/darker_gray" />
+                    tools:src="@android:color/darker_gray"
+                    tools:srcCompat="@drawable/octocat"/>
 
             </FrameLayout>
 
