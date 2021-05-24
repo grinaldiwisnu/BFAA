@@ -1,23 +1,23 @@
-package com.example.githubuserapp.networks.local
+package com.example.githubuserapp.data.local
 
 import android.database.Cursor
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.example.githubuserapp.models.SearchResponse
+import com.example.githubuserapp.models.UserGithub
 
 @Dao
 interface GithubUserDao {
-    @Query("SELECT * FROM user_table ORDER BY login ASC")
-    fun getUsers(): LiveData<List<SearchResponse>>
+    @Query("SELECT * from user_table ORDER BY login ASC")
+    fun getUserList(): LiveData<List<UserGithub>>
 
     @Query("SELECT * from user_table WHERE login = :username")
-    fun getUser(username: String): SearchResponse?
+    fun getUserDetail(username: String): UserGithub?
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertUser(user: SearchResponse)
+    suspend fun insertUser(user: UserGithub)
 
     @Delete
-    suspend fun deleteUser(user: SearchResponse): Int
+    suspend fun deleteUser(model: UserGithub): Int
 
     @Query("DELETE FROM user_table")
     suspend fun deleteAll()
@@ -26,5 +26,5 @@ interface GithubUserDao {
     fun getUserListProvider(): Cursor
 
     @Query("SELECT * from user_table ORDER BY login ASC")
-    fun getWidgetList(): List<SearchResponse>
+    fun getWidgetList(): List<UserGithub>
 }

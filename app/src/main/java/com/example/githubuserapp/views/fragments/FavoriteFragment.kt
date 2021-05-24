@@ -54,47 +54,50 @@ class FavoriteFragment : Fragment(), ShowState {
         favoriteLoading(favoriteBinding)
         favoriteViewModel.dataFavorite.observe(viewLifecycleOwner, Observer {
             it?.let { users ->
-                if (!users.isNullOrEmpty()){
+                if (!users.isNullOrEmpty()) {
                     favoriteSuccess(favoriteBinding)
                     favoriteAdapter.setData(users)
                 } else {
                     favoriteError(
                         favoriteBinding,
-                        "Tidak ada user ditemukan"
+                        resources.getString(
+                            R.string.not_have,
+                            "",
+                            resources.getString(R.string.favorite)
+                        )
                     )
                 }
             }
         })
     }
 
-    override fun favoriteLoading(favoriteBinding: FragmentFavoriteBinding): Int? {
-        favoriteBinding.apply {
-            emptyText.visibility = View.GONE
-            progressBar.visibility = View.VISIBLE
-            favRecyclerview.visibility = View.GONE
+    override fun favoriteLoading(favoriteFragmentBinding: FragmentFavoriteBinding): Int? {
+        this.favoriteBinding.apply {
+            emptyText.visibility = gone
+            progressBar.visibility = visible
+            favRecyclerview.visibility = gone
         }
-        return super.favoriteLoading(favoriteBinding)
+        return super.favoriteLoading(favoriteFragmentBinding)
     }
 
-    override fun favoriteSuccess(favoriteBinding: FragmentFavoriteBinding): Int? {
-        this.favoriteBinding.apply {
-            emptyText.visibility = View.GONE
-            progressBar.visibility = View.GONE
-            favRecyclerview.visibility = View.VISIBLE
+    override fun favoriteSuccess(favoriteFragmentBinding: FragmentFavoriteBinding): Int? {
+        favoriteBinding.apply {
+            emptyText.visibility = gone
+            progressBar.visibility = gone
+            favRecyclerview.visibility = visible
         }
-        return super.favoriteSuccess(favoriteBinding)
+        return super.favoriteSuccess(favoriteFragmentBinding)
     }
 
     override fun favoriteError(
-        favoriteBinding: FragmentFavoriteBinding,
+        favoriteFragmentBinding: FragmentFavoriteBinding,
         message: String?
     ): Int? {
-        this.favoriteBinding.apply {
-            emptyText.visibility = View.GONE
-            emptyText.text = message
-            progressBar.visibility = View.VISIBLE
-            favRecyclerview.visibility = View.GONE
+        favoriteBinding.apply {
+            emptyText.visibility = visible
+            progressBar.visibility = gone
+            favRecyclerview.visibility = gone
         }
-        return super.favoriteError(favoriteBinding, message)
+        return super.favoriteError(favoriteFragmentBinding, message)
     }
 }

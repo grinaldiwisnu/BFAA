@@ -9,7 +9,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Entity(tableName = "user_table")
 @Parcelize
-data class SearchResponse(
+data class UserGithub(
     @PrimaryKey(autoGenerate = false)
     @field:Json(name = "id")
     val id: Int,

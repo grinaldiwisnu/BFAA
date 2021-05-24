@@ -58,5 +58,6 @@
     <fragment
         android:id="@+id/settings_destination"
         android:name="com.example.githubuserapp.views.fragments.SettingFragment"
+        tools:layout="@layout/fragment_setting"
         android:label="SettingsFragment"/>
 </navigation>

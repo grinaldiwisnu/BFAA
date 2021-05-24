@@ -1,4 +1,4 @@
-package com.example.githubuserapp.networks.api
+package com.example.githubuserapp.data.api
 
 import com.example.githubuserapp.utils.AUTH_TOKEN
 import okhttp3.OkHttpClient

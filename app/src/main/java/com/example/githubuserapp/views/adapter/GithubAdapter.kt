@@ -5,15 +5,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.githubuserapp.databinding.ItemUserBinding
-import com.example.githubuserapp.models.SearchResponse
+import com.example.githubuserapp.models.UserGithub
 
 class GithubAdapter(
-    private val listUserGithub: ArrayList<SearchResponse>,
+    private val listUserGithub: ArrayList<UserGithub>,
     private val clickListener: (String, View) -> Unit
 ) : RecyclerView.Adapter<GithubAdapter.CardViewHolder>() {
     inner class CardViewHolder(private val binding: ItemUserBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(githubUser: SearchResponse, click: (String, View) -> Unit) {
+        fun bind(githubUser: UserGithub, click: (String, View) -> Unit) {
             binding.data = githubUser
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
                 binding.root.transitionName = githubUser.login
@@ -35,7 +35,7 @@ class GithubAdapter(
         return listUserGithub.size
     }
 
-    fun setData(items: List<SearchResponse>) {
+    fun setData(items: List<UserGithub>) {
         listUserGithub.apply {
             clear()
             addAll(items)

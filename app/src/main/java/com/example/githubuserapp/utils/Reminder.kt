@@ -15,6 +15,10 @@ import com.example.githubuserapp.R
 import com.example.githubuserapp.views.MainActivity
 
 class Reminder : BroadcastReceiver() {
+    companion object {
+        private const val REMINDER_CODE = 101
+    }
+
     override fun onReceive(context: Context?, intent: Intent?) {
         showNotificationOnClient(context)
     }
@@ -59,10 +63,5 @@ class Reminder : BroadcastReceiver() {
         }
         val notification = mBuilder.build()
         notificationManagerCompat.notify(REMINDER_CODE, notification)
-    }
-
-
-    companion object {
-        private const val REMINDER_CODE = 101
     }
 }

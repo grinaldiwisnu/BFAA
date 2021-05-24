@@ -7,5 +7,5 @@ import kotlinx.android.parcel.Parcelize
 data class UserSearch(
     val total_count: String,
     val incomplete_results: Boolean? = null,
-    val items: List<SearchResponse>
+    val items: List<UserGithub>
 ) : Parcelable

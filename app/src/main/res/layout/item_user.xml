@@ -8,7 +8,7 @@
 
         <variable
             name="data"
-            type="com.example.githubuserapp.models.SearchResponse" />
+            type="com.example.githubuserapp.models.UserGithub" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -39,7 +39,10 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@drawable/octocat"/>
+                android:scaleType="centerCrop"
+                android:transitionName="imageView_trans"
+                tools:srcCompat="@drawable/ic_baseline_account_circle_24"
+                tools:targetApi="lollipop" />
 
             <TextView
                 android:id="@+id/githubUsername"

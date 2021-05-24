@@ -1,5 +1,6 @@
 package com.example.githubuserapp.utils
 
+import android.view.View
 import com.example.githubuserapp.databinding.FragmentFavoriteBinding
 import com.example.githubuserapp.databinding.FragmentFollowBinding
 import com.example.githubuserapp.databinding.FragmentHomeBinding
@@ -16,4 +17,10 @@ interface ShowState {
     fun favoriteLoading(favoriteBinding: FragmentFavoriteBinding): Int? = null
     fun favoriteSuccess(favoriteBinding: FragmentFavoriteBinding): Int? = null
     fun favoriteError(favoriteBinding: FragmentFavoriteBinding, message: String?): Int? = null
+
+    val gone: Int
+        get() = View.GONE
+
+    val visible: Int
+        get() = View.VISIBLE
 }

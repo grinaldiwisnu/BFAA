@@ -4,16 +4,16 @@ import android.content.Context
 import android.widget.RemoteViews
 import android.widget.RemoteViewsService
 import com.example.githubuserapp.R
-import com.example.githubuserapp.models.SearchResponse
-import com.example.githubuserapp.networks.local.GithubDatabase
-import com.example.githubuserapp.networks.local.GithubUserDao
+import com.example.githubuserapp.data.local.GithubDatabase
+import com.example.githubuserapp.data.local.GithubUserDao
+import com.example.githubuserapp.models.UserGithub
 
 class WidgetProvider(private val context: Context): RemoteViewsService.RemoteViewsFactory {
-    private lateinit var listUser: List<SearchResponse>
+    private lateinit var listUser: List<UserGithub>
     private lateinit var githubUserDao: GithubUserDao
 
     override fun onCreate() {
-        githubUserDao = GithubDatabase.getDatabase(context).userDao()
+        githubUserDao = GithubDatabase.getInstance(context).userDao()
     }
 
     override fun onDataSetChanged() {

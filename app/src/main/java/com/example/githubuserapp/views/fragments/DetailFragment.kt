@@ -12,7 +12,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.githubuserapp.R
 import com.example.githubuserapp.databinding.FragmentDetailBinding
-import com.example.githubuserapp.models.SearchResponse
+import com.example.githubuserapp.models.UserGithub
 import com.example.githubuserapp.utils.State
 import com.example.githubuserapp.viewmodel.DetailViewModel
 import com.google.android.material.tabs.TabLayoutMediator
@@ -24,17 +24,7 @@ class DetailFragment : Fragment() {
     private lateinit var detailViewModel: DetailViewModel
     private val args: DetailFragmentArgs by navArgs()
     private var isFavorite: Boolean = false
-    private lateinit var searchResponse: SearchResponse
-
-    inner class PagerAdapter(
-        private val tabList: Array<String>,
-        private val username: String,
-        fragment: Fragment
-    ) : FragmentStateAdapter(fragment) {
-        override fun getItemCount(): Int = tabList.size
-        override fun createFragment(position: Int): Fragment =
-            FollowFragment.newInstance(username, tabList[position])
-    }
+    private lateinit var model: UserGithub
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,8 +63,8 @@ class DetailFragment : Fragment() {
 
     private fun observeDetail() {
         detailViewModel.data(args.Username).observe(viewLifecycleOwner, Observer {
-            if(it.state == State.SUCCESS){
-                searchResponse = it.data!!
+            if (it.state == State.SUCCESS) {
+                model = it.data!!
                 detailBinding.data = it.data
             }
         })
@@ -86,20 +76,34 @@ class DetailFragment : Fragment() {
     }
 
     private fun addOrRemoveFavorite(){
-        if (!isFavorite){
-            detailViewModel.addFavorite(searchResponse)
+        if (!isFavorite) {
+            val user = model
+            detailViewModel.addFavorite(user)
             Toast.makeText(context, "Ditambahkan ke favorite", Toast.LENGTH_SHORT).show()
         } else {
-            detailViewModel.removeFavorite(searchResponse)
+            val user = model
+            detailViewModel.removeFavorite(user)
             Toast.makeText(context, "Dihapus dari favorite", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun changeFavorite(condition: Boolean){
-        if (condition){
+    private fun changeFavorite(condition: Boolean) {
+        if (condition) {
             detailBinding.fabFavorite.setImageResource(R.drawable.ic_baseline_favorite_24)
         } else {
             detailBinding.fabFavorite.setImageResource(R.drawable.ic_baseline_favorite_border_24)
         }
+    }
+
+    inner class PagerAdapter(
+        private val tabList: Array<String>,
+        private val username: String,
+        fragment: Fragment
+    ) : FragmentStateAdapter(fragment) {
+
+        override fun getItemCount(): Int = tabList.size
+
+        override fun createFragment(position: Int): Fragment =
+            FollowFragment.newInstance(username, tabList[position])
     }
 }

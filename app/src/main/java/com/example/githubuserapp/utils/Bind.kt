@@ -10,5 +10,8 @@ import com.example.githubuserapp.R
 fun avatar(imageView: ImageView, avatar: String) =
     Glide.with(imageView)
         .load(avatar)
-        .apply(RequestOptions.circleCropTransform().placeholder(R.drawable.octocat))
+        .apply(
+            RequestOptions.circleCropTransform()
+                .placeholder(R.drawable.ic_baseline_account_circle_24)
+        )
         .into(imageView)
