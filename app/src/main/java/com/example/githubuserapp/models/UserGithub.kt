@@ -1,16 +1,13 @@
 package com.example.githubuserapp.models
 
-import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
-import kotlinx.android.parcel.Parcelize
 
 @Entity(tableName = "user_table")
-@Parcelize
 data class UserGithub(
-    @PrimaryKey(autoGenerate = false)
+    @PrimaryKey
     @field:Json(name = "id")
     val id: Int,
 
@@ -55,4 +52,4 @@ data class UserGithub(
     @ColumnInfo(name = "company")
     @field:Json(name = "company")
     val company: String
-) : Parcelable
+)
