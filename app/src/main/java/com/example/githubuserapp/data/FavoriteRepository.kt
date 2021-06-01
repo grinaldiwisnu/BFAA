@@ -12,7 +12,7 @@ import kotlinx.coroutines.Dispatchers
 class FavoriteRepository(private val githubUserDao: GithubUserDao) {
     private val favorite: MutableLiveData<Boolean> = MutableLiveData()
 
-    fun getDetailUser(username: String) = liveData(Dispatchers.IO) {
+    fun getDetailUser(username: String?) = liveData(Dispatchers.IO) {
         emit(Resource.loading(null))
         val user = githubUserDao.getUserDetail(username)
         if (user != null) {

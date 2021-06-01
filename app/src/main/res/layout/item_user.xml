@@ -57,19 +57,6 @@
                 app:layout_constraintStart_toEndOf="@+id/githubImg"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Username Github" />
-
-            <TextView
-                android:id="@+id/githubUrl"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="4dp"
-                android:text="@{data.htmlUrl}"
-                android:textStyle="italic"
-                app:layout_constraintStart_toEndOf="@+id/githubImg"
-                app:layout_constraintTop_toBottomOf="@+id/githubUsername"
-                tools:text="Link Github" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </layout>

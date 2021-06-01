@@ -1,9 +1,10 @@
 package com.example.githubuserapp.data.api
 
 import com.example.githubuserapp.utils.AUTH_TOKEN
+import com.example.githubuserapp.utils.BASE_URL
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 
 object Retrofit {
@@ -26,10 +27,9 @@ object Retrofit {
 
     private val retrofitBuilder: Retrofit.Builder by lazy {
         Retrofit.Builder()
-            .baseUrl("https://api.github.com")
+            .baseUrl(BASE_URL)
             .client(client)
-            .addConverterFactory(GsonConverterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(MoshiConverterFactory.create())
     }
 
     val apiClient: Endpoints by lazy {

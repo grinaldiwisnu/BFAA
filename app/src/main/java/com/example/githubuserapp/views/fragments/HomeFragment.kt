@@ -32,7 +32,7 @@ class HomeFragment : Fragment(), ShowState {
             findNavController().navigate(
                 HomeFragmentDirections.detailsAction(username),
                 FragmentNavigatorExtras(
-                    iv to username
+                    (iv to username) as Pair<View, String>
                 )
             )
         }

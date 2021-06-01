@@ -5,51 +5,43 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
 
-@Entity(tableName = "user_table")
+@Entity(tableName = "users")
 data class UserGithub(
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = false)
     @field:Json(name = "id")
-    val id: Int,
+    val id: Int?,
 
     @ColumnInfo(name = "login")
     @field:Json(name = "login")
-    val login: String,
+    val login: String?,
 
     @ColumnInfo(name = "avatar_url")
     @field:Json(name = "avatar_url")
-    val avatarUrl: String,
+    val avatarUrl: String? = "",
 
 
     @ColumnInfo(name = "name")
     @field:Json(name = "name")
-    val name: String?,
+    val name: String? = "",
 
     @ColumnInfo(name = "location")
     @field:Json(name = "location")
-    val location: String?,
+    val location: String? = "",
 
     @ColumnInfo(name = "type")
     @field:Json(name = "type")
-    val type: String?,
+    val type: String? = "",
 
     @ColumnInfo(name = "public_repos")
     @field:Json(name = "public_repos")
-    val publicRepos: Int,
+    val publicRepos: Int?,
 
 
     @ColumnInfo(name = "followers")
     @field:Json(name = "followers")
-    val followers: Int,
+    val followers: Int?,
 
     @ColumnInfo(name = "following")
     @field:Json(name = "following")
-    val following: Int,
-
-    @ColumnInfo(name = "html_url")
-    @field:Json(name = "html_url")
-    val htmlUrl: String,
-
-    @ColumnInfo(name = "company")
-    @field:Json(name = "company")
-    val company: String
+    val following: Int?
 )

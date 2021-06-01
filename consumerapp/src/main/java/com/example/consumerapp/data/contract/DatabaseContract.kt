@@ -9,7 +9,7 @@ object DatabaseContract {
 
     class UserColumns : BaseColumns {
         companion object {
-            private const val TABLE_NAME = "user_table"
+            private const val TABLE_NAME = "users"
             const val ID = "id"
             const val LOGIN = "login"
             const val AVATAR_URL = "avatar_url"
@@ -19,8 +19,6 @@ object DatabaseContract {
             const val PUBLIC_REPOS = "public_repos"
             const val FOLLOWERS = "followers"
             const val FOLLOWING = "following"
-            const val HTML_URL = "html_url"
-            const val COMPANY = "company"
 
             val CONTENT_URI: Uri = Uri.Builder().scheme(SCHEME)
                 .authority(AUTHORITY)

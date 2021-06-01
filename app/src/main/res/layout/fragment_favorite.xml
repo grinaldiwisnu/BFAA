@@ -32,7 +32,6 @@
         android:id="@+id/fav_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="75dp"
         android:visibility="invisible"
         tools:listitem="@layout/item_user" />
 

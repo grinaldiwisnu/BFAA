@@ -14,7 +14,7 @@ class ProviderContent : ContentProvider() {
 
     companion object {
         private const val AUTHORITY = "com.example.githubuserapp"
-        private const val TABLE_NAME = "user_table"
+        private const val TABLE_NAME = "users"
         private const val USERLIST = 1
         private val uriMatcher = UriMatcher(UriMatcher.NO_MATCH)
 

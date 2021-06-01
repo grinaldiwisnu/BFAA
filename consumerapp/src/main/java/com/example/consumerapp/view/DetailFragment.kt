@@ -11,6 +11,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 class DetailFragment : BottomSheetDialogFragment() {
     private lateinit var userModel: UserModel
     private lateinit var binding: FragmentDetailBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {

@@ -11,7 +11,7 @@ class FavoriteViewModel(app: Application) : AndroidViewModel(app) {
     val dataFavorite: LiveData<List<UserGithub>>
 
     init {
-        val githubUserDao = GithubDatabase.getInstance(app).userDao()
+        val githubUserDao = GithubDatabase.getInstance(app.applicationContext).userDao()
         dataFavorite = GithubRepository.getFavoriteUsers(githubUserDao)
     }
 }

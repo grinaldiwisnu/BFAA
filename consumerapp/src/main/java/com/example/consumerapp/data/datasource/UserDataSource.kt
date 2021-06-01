@@ -31,8 +31,6 @@ class UserDataSource(private val contentResolver: ContentResolver) {
                         getInt(getColumnIndexOrThrow(DatabaseContract.UserColumns.PUBLIC_REPOS)),
                         getInt(getColumnIndexOrThrow(DatabaseContract.UserColumns.FOLLOWERS)),
                         getInt(getColumnIndexOrThrow(DatabaseContract.UserColumns.FOLLOWING)),
-                        getString(getColumnIndexOrThrow(DatabaseContract.UserColumns.HTML_URL)),
-                        getString(getColumnIndexOrThrow(DatabaseContract.UserColumns.COMPANY))
                     )
                 )
             }

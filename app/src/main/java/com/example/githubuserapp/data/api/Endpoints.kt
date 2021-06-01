@@ -7,6 +7,9 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface Endpoints {
+    @GET("users")
+    suspend fun allUsers(): List<UserGithub>
+
     @GET("search/users")
     suspend fun searchUsers(
         @Query("q")

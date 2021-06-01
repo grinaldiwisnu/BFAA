@@ -38,7 +38,7 @@ class FavoriteFragment : Fragment(), ShowState {
         favoriteAdapter = GithubAdapter(arrayListOf()) { username, iv ->
             findNavController().navigate(
                 FavoriteFragmentDirections.actionFavoriteFragmentToDetailsDestination(username),
-                FragmentNavigatorExtras(iv to username)
+                FragmentNavigatorExtras((iv to username) as Pair<View, String>)
             )
         }
 

@@ -12,11 +12,14 @@ import com.example.githubuserapp.utils.Resource
 import kotlinx.coroutines.launch
 
 class DetailViewModel(app: Application) : AndroidViewModel(app) {
-
     private var userDao: GithubUserDao = GithubDatabase.getInstance(app).userDao()
-    private var favoriteRepository: FavoriteRepository = FavoriteRepository(userDao)
+    private var favoriteRepository: FavoriteRepository
 
-    fun data(username: String): LiveData<Resource<UserGithub>> =
+    init {
+        favoriteRepository = FavoriteRepository(userDao)
+    }
+
+    fun data(username: String?): LiveData<Resource<UserGithub>> =
         favoriteRepository.getDetailUser(username)
 
     fun addFavorite(model: UserGithub) = viewModelScope.launch {

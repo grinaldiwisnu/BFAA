@@ -7,6 +7,8 @@ import com.example.githubuserapp.R
 import com.example.githubuserapp.data.local.GithubDatabase
 import com.example.githubuserapp.data.local.GithubUserDao
 import com.example.githubuserapp.models.UserGithub
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
 
 class WidgetProvider(private val context: Context): RemoteViewsService.RemoteViewsFactory {
     private lateinit var listUser: List<UserGithub>
@@ -14,10 +16,11 @@ class WidgetProvider(private val context: Context): RemoteViewsService.RemoteVie
 
     override fun onCreate() {
         githubUserDao = GithubDatabase.getInstance(context).userDao()
+        fetchUserData()
     }
 
     override fun onDataSetChanged() {
-        listUser = githubUserDao.getWidgetList()
+        fetchUserData()
     }
 
     override fun onDestroy() {
@@ -37,7 +40,14 @@ class WidgetProvider(private val context: Context): RemoteViewsService.RemoteVie
 
     override fun getViewTypeCount(): Int = 1
 
-    override fun getItemId(position: Int): Long = listUser[position].id.toLong()
+    override fun getItemId(position: Int): Long = listUser[position].id?.toLong()!!
 
     override fun hasStableIds(): Boolean = true
+
+    private fun fetchUserData() {
+        runBlocking(Dispatchers.IO) {
+            val users = githubUserDao.getWidgetList()
+            listUser = users
+        }
+    }
 }
