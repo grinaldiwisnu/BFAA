@@ -15,7 +15,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".views.fragments.DetailFragment">
+        tools:context=".view.DetailFragment">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -96,19 +96,6 @@
                     tools:text="User Location" />
 
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/detailCompany"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="4dp"
-                android:drawablePadding="10dp"
-                android:text='@{data.company ?? ""}'
-                android:textColor="@android:color/darker_gray"
-                android:textSize="14sp"
-                tools:text="User Company" />
 
             <LinearLayout
                 android:layout_width="match_parent"

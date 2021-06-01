@@ -1,5 +1,9 @@
 package com.example.consumerapp.models
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class UserModel(
     val id: Int,
     val login: String,
@@ -10,4 +14,4 @@ data class UserModel(
     val public_repos: Int,
     val followers: Int,
     val following: Int
-)
+) : Parcelable

@@ -9,11 +9,11 @@ import com.example.githubuserapp.models.UserGithub
 
 class GithubAdapter(
     private val listUserGithub: ArrayList<UserGithub>,
-    private val clickListener: (String?, View) -> Unit
+    private val clickListener: (String, View) -> Unit
 ) : RecyclerView.Adapter<GithubAdapter.CardViewHolder>() {
     inner class CardViewHolder(private val binding: ItemUserBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(githubUser: UserGithub, click: (String?, View) -> Unit) {
+        fun bind(githubUser: UserGithub, click: (String, View) -> Unit) {
             binding.data = githubUser
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
                 binding.root.transitionName = githubUser.login

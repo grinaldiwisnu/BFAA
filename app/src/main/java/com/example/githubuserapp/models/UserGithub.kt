@@ -13,7 +13,7 @@ data class UserGithub(
 
     @ColumnInfo(name = "login")
     @field:Json(name = "login")
-    val login: String?,
+    val login: String,
 
     @ColumnInfo(name = "avatar_url")
     @field:Json(name = "avatar_url")

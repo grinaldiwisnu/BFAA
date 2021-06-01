@@ -60,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="4dp"
-                android:text="@{data.htmlUrl}"
+                android:text='@{data.location ?? "Somewhere"}'
                 android:textStyle="italic"
                 app:layout_constraintStart_toEndOf="@+id/githubImg"
                 app:layout_constraintTop_toBottomOf="@+id/githubUsername"

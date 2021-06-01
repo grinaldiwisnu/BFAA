@@ -19,7 +19,7 @@ import com.example.githubuserapp.views.adapter.GithubAdapter
 
 class FavoriteFragment : Fragment(), ShowState {
 
-    private lateinit var favoriteBinding: FragmentFavoriteBinding
+    private lateinit var favoriteBindingFragment: FragmentFavoriteBinding
     private lateinit var favoriteAdapter: GithubAdapter
     private val favoriteViewModel: FavoriteViewModel by navGraphViewModels(R.id.navigation)
 
@@ -29,8 +29,8 @@ class FavoriteFragment : Fragment(), ShowState {
     ): View {
         val actionBar = (activity as AppCompatActivity).supportActionBar
         actionBar?.title = "Favorite User"
-        favoriteBinding = FragmentFavoriteBinding.inflate(layoutInflater, container, false)
-        return favoriteBinding.root
+        favoriteBindingFragment = FragmentFavoriteBinding.inflate(layoutInflater, container, false)
+        return favoriteBindingFragment.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -38,11 +38,11 @@ class FavoriteFragment : Fragment(), ShowState {
         favoriteAdapter = GithubAdapter(arrayListOf()) { username, iv ->
             findNavController().navigate(
                 FavoriteFragmentDirections.actionFavoriteFragmentToDetailsDestination(username),
-                FragmentNavigatorExtras((iv to username) as Pair<View, String>)
+                FragmentNavigatorExtras((iv to username))
             )
         }
 
-        favoriteBinding.favRecyclerview.apply {
+        favoriteBindingFragment.favRecyclerview.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             adapter = favoriteAdapter
         }
@@ -51,15 +51,15 @@ class FavoriteFragment : Fragment(), ShowState {
     }
 
     private fun observeFavorite() {
-        favoriteLoading(favoriteBinding)
+        favoriteLoading(favoriteBindingFragment)
         favoriteViewModel.dataFavorite.observe(viewLifecycleOwner, Observer {
             it?.let { users ->
                 if (!users.isNullOrEmpty()) {
-                    favoriteSuccess(favoriteBinding)
+                    favoriteSuccess(favoriteBindingFragment)
                     favoriteAdapter.setData(users)
                 } else {
                     favoriteError(
-                        favoriteBinding,
+                        favoriteBindingFragment,
                         resources.getString(
                             R.string.not_have,
                             "",
@@ -71,33 +71,33 @@ class FavoriteFragment : Fragment(), ShowState {
         })
     }
 
-    override fun favoriteLoading(favoriteFragmentBinding: FragmentFavoriteBinding): Int? {
-        this.favoriteBinding.apply {
+    override fun favoriteLoading(favoriteBinding: FragmentFavoriteBinding): Int? {
+        this.favoriteBindingFragment.apply {
             emptyText.visibility = gone
             progressBar.visibility = visible
             favRecyclerview.visibility = gone
         }
-        return super.favoriteLoading(favoriteFragmentBinding)
+        return super.favoriteLoading(favoriteBinding)
     }
 
-    override fun favoriteSuccess(favoriteFragmentBinding: FragmentFavoriteBinding): Int? {
-        favoriteBinding.apply {
+    override fun favoriteSuccess(favoriteBinding: FragmentFavoriteBinding): Int? {
+        this.favoriteBindingFragment.apply {
             emptyText.visibility = gone
             progressBar.visibility = gone
             favRecyclerview.visibility = visible
         }
-        return super.favoriteSuccess(favoriteFragmentBinding)
+        return super.favoriteSuccess(favoriteBinding)
     }
 
     override fun favoriteError(
-        favoriteFragmentBinding: FragmentFavoriteBinding,
+        favoriteBinding: FragmentFavoriteBinding,
         message: String?
     ): Int? {
-        favoriteBinding.apply {
+        favoriteBindingFragment.apply {
             emptyText.visibility = visible
             progressBar.visibility = gone
             favRecyclerview.visibility = gone
         }
-        return super.favoriteError(favoriteFragmentBinding, message)
+        return super.favoriteError(favoriteBinding, message)
     }
 }
